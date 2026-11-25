@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Conrado0x1/SixM/main/7E941FB5-E19E-4C6D-A863-647FC940BE43.png" width="180" alt="SixM logo">
+  <img src="https://raw.githubusercontent.com/Conrado0x1/SixM/main/c975b680-d5c5-4b4f-86ce-825dc7eb9f31.png" width="180" alt="SixM logo">
 </p>
 
 <h1 align="center">SixM</h1>
