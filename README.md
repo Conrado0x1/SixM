@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=".github/assets/sixm-logo.png" width="140" alt="SixM logo">
+  <img src="https://raw.githubusercontent.com/Conrado0x1/SixM/main/7E941FB5-E19E-4C6D-A863-647FC940BE43.png" width="180" alt="SixM logo">
 </p>
 
 <h1 align="center">SixM</h1>
@@ -14,121 +14,101 @@
 </p>
 
 <p align="center">
-  <a href="#estado-do-projeto">Estado</a> ·
-  <a href="#compilar-e-executar">Instalação</a> ·
-  <a href="#arquitetura">Arquitetura</a> ·
+  <a href="#project-status">Status</a> ·
+  <a href="#license">License</a> ·
+  <a href="#architecture">Architecture</a> ·
   <a href="#roadmap">Roadmap</a>
 </p>
 
 ---
 
-SixM é um projeto independente que pretende construir uma plataforma multiplayer modular para Grand Theft Auto VI: launcher próprio, serviços de identidade, servidores dedicados e ferramentas para developers.
+SixM is an independent project working towards a modular multiplayer platform for Grand Theft Auto VI, with its own launcher, identity services, dedicated servers, and developer tools.
 
-O desenvolvimento é progressivo. A entrega atual contém um launcher funcional e a primeira fundação do backend de autenticação. **Ainda não é possível jogar GTA VI através do SixM.** A viabilidade da integração com o jogo será investigada separadamente.
+Development follows incremental milestones. The current delivery includes a working launcher and an initial authentication backend. **SixM cannot currently be used to play GTA VI.** The feasibility of game integration will be investigated separately.
 
-## Estado do projeto
+## Project status
 
-| Componente | Estado atual |
+| Component | Current status |
 | --- | --- |
-| Launcher v0.1.0 | Compilado e testado em Windows x64 |
-| Interface | Dashboard escuro, navegação superior e identidade SixM |
-| Arranque | Ecrã inicial com logo e progresso de tarefas locais |
-| Configuração | Diretório do jogo guardado localmente |
-| SixM Master | API experimental de contas e sessões com PostgreSQL |
-| Autenticação no launcher | Ainda não ligada ao backend |
-| Multiplayer e integração com o jogo | Não implementados |
-| Atualizador e assinatura digital | Planeados |
+| Launcher v0.1.0 | Built and tested on Windows x64 |
+| Interface | Dark dashboard, top navigation, and SixM branding |
+| Startup | Splash screen with the project logo and local initialization progress |
+| Configuration | Game directory saved locally |
+| SixM Master | Experimental account and session API backed by PostgreSQL |
+| Launcher authentication | Not connected to the backend yet |
+| Multiplayer and game integration | Not implemented |
+| Updater and executable signing | Planned |
 
-Os servidores e as contagens mostrados no dashboard são **dados de demonstração**, identificados na interface. A coluna de novidades apresenta conteúdo local do projeto. O ecrã inicial não simula downloads.
+Server listings and player counts displayed in the dashboard are explicitly labeled **demonstration data**. The development feed contains local project information. The startup screen does not simulate downloads.
 
-<p align="center">
-  <img src=".github/assets/dashboard.png" width="960" alt="SixM launcher dashboard">
-</p>
+## Backend and authentication
 
-<p align="center">
-  <img src=".github/assets/startup.png" width="250" alt="SixM startup screen">
-</p>
+SixM Master uses .NET 10 and PostgreSQL. It provides account registration, sign-in, authenticated profiles, token renewal, and session revocation. Database migrations are versioned alongside the source.
 
-## Compilar e executar
+This backend is currently **restricted to development** and does not implement email verification or password recovery. Launcher authentication is not connected to this service yet.
 
-### Launcher
-
-Requisitos: Windows x64, Visual Studio 2022 com MSVC v143 e Windows SDK, Qt 6.8.3 MSVC 2022 64-bit e CMake.
-
-```powershell
-$env:SIXM_QT_ROOT = 'C:\Qt\6.8.3\msvc2022_64'
-$env:PATH = "$env:SIXM_QT_ROOT\bin;$env:PATH"
-cmake --preset windows-msvc2022
-cmake --build --preset release
-ctest --preset release
-```
-
-O pacote portátil inclui as bibliotecas necessárias: extrair a pasta completa e abrir `SixM.exe`. Não mover apenas o executável.
-
-Instruções completas e configuração desta máquina: [Compilar o launcher](Documentation/Building.md).
-
-### Backend e autenticação
-
-O SixM Master utiliza .NET 10 e PostgreSQL. Disponibiliza registo, login, perfil autenticado, renovação de tokens e encerramento de sessões. As migrações da base de dados são versionadas no código.
-
-A configuração utiliza variáveis do ambiente, incluindo `ConnectionStrings__SixM`; não guardar credenciais no repositório. O serviço desta etapa é **exclusivo para desenvolvimento**, sem confirmação de email nem recuperação de password.
-
-[Configurar e executar o Master](Master/README.md) · [Arquitetura da autenticação](Documentation/Backend.md)
-
-## Arquitetura
+## Architecture
 
 ```text
 SixM/
-├── Launcher/          # Aplicação desktop C++ / Qt
-├── Client/            # Reservado para o cliente do framework
-├── Server/            # Reservado para o servidor dedicado
-├── Core/              # Reservado para componentes partilhados
-├── Networking/        # Reservado para o protocolo multiplayer
-├── SDK/               # Reservado para recursos e scripting
-├── Master/            # API C# de identidade e sessões
-├── Database/          # Preparação da base de dados e referências ao schema
-├── Tests/             # Testes do launcher e integração do backend
-└── Documentation/     # Arquitetura, instalação e validação
+├── Launcher/          # C++ / Qt desktop application
+├── Client/            # Reserved for the framework client
+├── Server/            # Reserved for the dedicated server
+├── Core/              # Reserved for shared components
+├── Networking/        # Reserved for the multiplayer protocol
+├── SDK/               # Reserved for resources and scripting
+├── Master/            # C# identity and session API
+├── Database/          # Database setup and schema references
+├── Tests/             # Launcher tests and backend integration tests
+└── Documentation/     # Architecture, setup, and validation
 ```
 
-Os módulos reservados não contêm implementações fictícias. Launcher, backend e futuros servidores podem ser desenvolvidos e testados independentemente do jogo.
+Reserved modules do not contain placeholder implementations presented as working features. The launcher, backend, and future dedicated servers can be developed and tested independently of the game.
 
-## Segurança
+## Security
 
-A fundação de autenticação utiliza ASP.NET Core Identity para passwords, tokens aleatórios com apenas os respetivos hashes guardados em PostgreSQL, sessões revogáveis, rotação de refresh tokens, lockout e limites de pedidos. HTTP é permitido apenas em loopback; acessos remotos exigem HTTPS.
+The authentication foundation uses ASP.NET Core Identity for password hashing, cryptographically random tokens stored only as hashes in PostgreSQL, revocable sessions, refresh token rotation, account lockout, and request rate limiting. HTTP is permitted only over loopback; remote access requires HTTPS.
 
-TLS operacional, confirmação de email, recuperação de conta, MFA, atualizações verificadas e assinatura digital dos executáveis ainda precisam das respetivas etapas de implementação e validação. O launcher de desenvolvimento não está assinado. C++ não impede a análise ou modificação do software.
+Production TLS configuration, email verification, account recovery, MFA, verified updates, and executable signing still require their implementation and validation stages. The development launcher is unsigned. C++ does not prevent software from being analyzed or modified.
 
 ## Roadmap
 
-Estes milestones são objetivos de desenvolvimento, sujeitos à viabilidade técnica.
+These milestones are development goals, subject to technical feasibility.
 
-| Versão | Objetivo |
+| Version | Goal |
 | --- | --- |
 | v0.1.0 | Launcher Foundation |
-| v0.2.0 | Interface e navegação |
+| v0.2.0 | Interface and navigation |
 | v0.3.0 | Server Browser |
 | v0.4.0 | Networking |
 | v0.5.0 | Server Core |
 | v0.6.0 | Player Management |
 | v0.7.0 | Resource System |
 | v0.8.0 | Lua Runtime |
-| v0.9.0 | Investigação da integração com GTA VI |
-| v1.0.0 | Primeiro multiplayer, condicionado à viabilidade |
+| v0.9.0 | GTA VI integration research |
+| v1.0.0 | First multiplayer release, subject to feasibility |
 
-A fundação do Master está a ser desenvolvida separadamente; não significa que os milestones de multiplayer estejam concluídos.
+The Master foundation is being developed separately. Its availability does not mean that the multiplayer milestones are complete.
 
-## Desenvolvimento e testes
+## Development and testing
 
-- [Arquitetura do launcher](Documentation/Architecture.md)
-- [Ambiente e validação](Documentation/Validation.md)
-- [Backend e testes de autenticação](Documentation/Backend.md)
-- [Dependências e licenças de terceiros](THIRD_PARTY_NOTICES.md)
+- [Launcher architecture](Documentation/Architecture.md)
+- [Development environment and validation](Documentation/Validation.md)
+- [Backend architecture and authentication tests](Documentation/Backend.md)
+- [Third-party dependencies and licenses](THIRD_PARTY_NOTICES.md)
 
-As alterações devem manter a separação dos módulos, incluir instruções reproduzíveis e testes adequados. Não submeter credenciais, tokens, ficheiros proprietários do jogo ou código destinado a contornar proteções.
+Changes should preserve module boundaries and include reproducible instructions and appropriate tests. Do not commit credentials, tokens, proprietary game files, or code intended to bypass game protections.
 
-## Identidade e licenciamento
+## Project identity
 
-SixM é um projeto independente, sem afiliação ou aprovação da Rockstar Games ou Take-Two Interactive. Não inclui ficheiros do jogo, e não assume a existência de uma API pública de modding ou de uma versão PC disponível.
+SixM is an independent project and is not affiliated with or endorsed by Rockstar Games or Take-Two Interactive. It does not include game files or assume that a public modding API or a PC version of GTA VI is available.
 
-O logo e o banner foram fornecidos pelo titular do projeto. A licença do código SixM ainda deve ser escolhida pelo titular antes de uma publicação com licença aberta. As bibliotecas e os ícones mantêm as suas próprias licenças, listadas em [Third-party notices](THIRD_PARTY_NOTICES.md).
+The project owner supplied the logo and banner. Third-party names and trademarks belong to their respective owners.
+
+## License
+
+SixM's original application source code is licensed under the **MIT License**.
+
+Copyright (c) 2026 Conrado0x1.
+
+See [LICENSE](LICENSE) for the full terms. Third-party libraries, icons, and separately licensed assets retain their own terms, listed in [Third-party notices](THIRD_PARTY_NOTICES.md).
