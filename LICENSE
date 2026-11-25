@@ -1,21 +1,76 @@
-MIT License
+SixM Community Source License
+Version 1.0 — 25 November 2026
 
 Copyright (c) 2026 Conrado0x1
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. Scope
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+This license covers the original SixM application source code and associated
+project documentation supplied under this license (the "Software"). Third-party
+components and separately licensed artwork are excluded and retain their own
+terms. This is a custom source-available license, not the MIT License.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+2. Permission to collaborate
+
+Subject to the conditions below, you may access, use, copy, study, test, modify,
+and distribute the Software, in source or compiled form, for private or
+commercial purposes. You may create repository forks and submit fixes, features,
+documentation, and other improvements to the SixM project. No fee is required
+for these permissions.
+
+3. Preserve identity and attribution
+
+When distributing the Software or a modified multiplayer framework substantially
+based on it, you must retain SixM as the framework's project name and retain
+the original copyright, author attribution, and this license.
+
+You may add a descriptive qualifier such as "SixM Community" or "Unofficial
+SixM Fork", but you must not replace SixM with another framework brand, strip
+its project identity, or present its original work as your own original project.
+The SixM name and existing logo must remain identifiable where supplied as
+framework branding. These requirements apply only to assets and rights that
+the licensor is entitled to license.
+
+This condition concerns the framework's public identity. It does not prevent
+ordinary code refactoring, accessibility adaptations, technical file naming,
+or choosing names for servers, resources, scripts, and other user content.
+
+4. Identify modified and unofficial versions
+
+Distributed modified versions must clearly identify themselves as modified and
+unofficial, describe the material changes, and preserve the original attribution.
+Do not imply that a fork, distribution, service, or server is an official SixM
+release or is approved by Conrado0x1 without written authorization.
+
+Recipients must receive this license with the Software. Additional terms must
+not remove the identity, attribution, or recipient permissions stated here.
+
+5. Contributions
+
+By intentionally submitting a contribution to SixM for inclusion, you represent
+that you have the right to submit it and offer that contribution under this
+license. You retain copyright in your own original contributions. Submission
+does not guarantee acceptance or grant maintainership of the official project.
+
+6. Third-party rights and exceptions
+
+This license does not change third-party licenses or grant rights in Rockstar
+Games, Take-Two Interactive, or other third-party names, trademarks, software,
+or assets. It does not override rights granted by applicable law, the terms
+of a code-hosting platform, or a separate agreement.
+
+7. Earlier releases
+
+These terms apply to distributions identified as licensed under this license.
+They do not retroactively remove permissions already granted for copies
+distributed under the MIT License or another license.
+
+8. Warranty and liability
+
+The Software is provided "AS IS", without warranties of any kind, to the extent
+permitted by applicable law. The copyright holders and contributors are not
+liable for claims or damages arising from use of the Software, except where
+applicable law does not permit that exclusion.
+
+For permissions outside these terms, contact Conrado0x1 through the official
+project repository: https://github.com/Conrado0x1/SixM.
